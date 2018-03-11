@@ -69,6 +69,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dbY-UN-CtG"/>
                     </view>
+                    <connections>
+                        <outlet property="sharingImageDescriptionTextField" destination="dS6-4V-QCT" id="XQL-EE-Bub"/>
+                        <outlet property="sharingImageNameLabel" destination="WPy-Sm-RBj" id="riZ-XV-9IW"/>
+                        <outlet property="sharingImageNameTextField" destination="DCp-Gk-egP" id="U8L-uH-q7l"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bsu-1V-J4s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
