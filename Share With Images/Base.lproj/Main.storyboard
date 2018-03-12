@@ -74,6 +74,7 @@
                                     <outlet property="nameLabel" destination="zQl-tB-krt" id="Y22-jL-SIH"/>
                                     <outlet property="photoImageView" destination="ckb-ub-YAJ" id="vjD-1w-8i7"/>
                                     <outlet property="typeLabel" destination="7RW-vd-0Cd" id="Aef-OS-Ew7"/>
+                                    <segue destination="uY9-jx-JRC" kind="show" identifier="ShowSharingImageDetail" id="3gz-hI-I2t"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -228,10 +229,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C07-1l-eVF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3367.1999999999998" y="31.934032983508249"/>
+            <point key="canvasLocation" x="3359" y="387"/>
         </scene>
     </scenes>
     <resources>
         <image name="defaultSharingImage" width="540" height="540"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="3gz-hI-I2t"/>
+    </inferredMetricsTieBreakers>
 </document>

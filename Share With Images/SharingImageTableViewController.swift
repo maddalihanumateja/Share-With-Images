@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import os.log
 
 class SharingImageTableViewController: UITableViewController {
     
@@ -98,15 +99,36 @@ class SharingImageTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        super.prepare(for: segue, sender: sender)
+        
+        switch(segue.identifier ?? "") {
+        case "AddSharingImage":
+                os_log("Adding a new meal.", log: OSLog.default, type: .debug)
+        case "ShowSharingImageDetail":
+            guard let sharingImageViewController = segue.destination as? SharingImageViewController else {
+                fatalError("Unexpected destination: \(segue.destination)")
+            }
+            
+            guard let selectedSharingImageCell = sender as? SharingImageTableViewCell else {
+                fatalError("Unexpected sender: \(String(describing: sender))")
+            }
+            
+            guard let indexPath = tableView.indexPath(for: selectedSharingImageCell) else {
+                fatalError("The selected cell is not being displayed by the table")
+            }
+            
+            let selectedSharingImage = sharingImages[indexPath.row]
+            sharingImageViewController.sharingImage = selectedSharingImage
+        default:
+            fatalError("Unexpected Segue Identifier; \(String(describing: segue.identifier))")
+        }
+        
     }
-    */
 
     //MARK: Private Methods
     
@@ -127,11 +149,21 @@ class SharingImageTableViewController: UITableViewController {
     //MARK: Actions
     
     @IBAction func unwindToSharingImageList(sender: UIStoryboardSegue) {
+        
         if let sourceViewController = sender.source as? SharingImageViewController, let sharingImage = sourceViewController.sharingImage {
-            // Add a new meal.
-            let newIndexPath = IndexPath(row: sharingImages.count, section: 0)
-            sharingImages.append(sharingImage)
-            tableView.insertRows(at: [newIndexPath], with: .automatic)
+            
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                // Update an existing SharingImage.
+                sharingImages[selectedIndexPath.row] = sharingImage
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            }
+            else{
+                // Add a new SharingImage.
+                let newIndexPath = IndexPath(row: sharingImages.count, section: 0)
+                
+                sharingImages.append(sharingImage)
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
         }
     }
 }

@@ -32,6 +32,23 @@ class SharingImageViewController: UIViewController, UITextFieldDelegate, UIImage
         sharingImageNameTextField.delegate = self
         sharingImageDescriptionTextField.delegate = self
         
+        // Set up views if editing an existing Meal.
+        if let sharingImage = sharingImage {
+            navigationItem.title = sharingImage.name
+            sharingImageNameTextField.text   = sharingImage.name
+            sharingImageDescriptionTextField.text = sharingImage.description
+            sharingImagePhotoView.image = sharingImage.photo
+            switch sharingImage.type
+            {
+            case SharingImage.sharingImageType.Action:
+                sharingImageTypeSegmentedControl.selectedSegmentIndex = 1
+            case SharingImage.sharingImageType.FreeformInput:
+                sharingImageTypeSegmentedControl.selectedSegmentIndex = 2
+            case SharingImage.sharingImageType.Person:
+                sharingImageTypeSegmentedControl.selectedSegmentIndex = 0
+            }
+        }
+        
         // Enable the Save button only if the name and description text fields are not empty.
         updateSaveButtonState()
     }
