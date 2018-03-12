@@ -9,7 +9,14 @@
 import UIKit
 
 class SharingImageTableViewCell: UITableViewCell {
-
+    
+    //MARK: Properties
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var typeLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var photoImageView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
