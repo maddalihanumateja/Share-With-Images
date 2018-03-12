@@ -14,6 +14,10 @@
 		4268B48420545D5100159DFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4268B48320545D5100159DFA /* Assets.xcassets */; };
 		4268B48720545D5100159DFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4268B48520545D5100159DFA /* LaunchScreen.storyboard */; };
 		4268B49220545D5100159DFA /* Share_With_ImagesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4268B49120545D5100159DFA /* Share_With_ImagesTests.swift */; };
+		4268B4A12055E81000159DFA /* SharingImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4268B4A02055E81000159DFA /* SharingImageViewController.swift */; };
+		4268B4A32055F9E500159DFA /* SharingImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4268B4A22055F9E500159DFA /* SharingImage.swift */; };
+		4268B4A5205619D900159DFA /* SharingImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4268B4A4205619D900159DFA /* SharingImageTableViewCell.swift */; };
+		4268B4A72056438500159DFA /* SharingImageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4268B4A62056438500159DFA /* SharingImageTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +42,10 @@
 		4268B48D20545D5100159DFA /* Share With ImagesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Share With ImagesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4268B49120545D5100159DFA /* Share_With_ImagesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Share_With_ImagesTests.swift; sourceTree = "<group>"; };
 		4268B49320545D5100159DFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4268B4A02055E81000159DFA /* SharingImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingImageViewController.swift; sourceTree = "<group>"; };
+		4268B4A22055F9E500159DFA /* SharingImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingImage.swift; sourceTree = "<group>"; };
+		4268B4A4205619D900159DFA /* SharingImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingImageTableViewCell.swift; sourceTree = "<group>"; };
+		4268B4A62056438500159DFA /* SharingImageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingImageTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +69,7 @@
 		4268B46E20545D4F00159DFA = {
 			isa = PBXGroup;
 			children = (
+				4268B4A02055E81000159DFA /* SharingImageViewController.swift */,
 				4268B47920545D4F00159DFA /* Share With Images */,
 				4268B49020545D5100159DFA /* Share With ImagesTests */,
 				4268B47820545D4F00159DFA /* Products */,
@@ -83,9 +92,12 @@
 				4268B47C20545D4F00159DFA /* art.scnassets */,
 				4268B47E20545D4F00159DFA /* ViewController.swift */,
 				4268B48020545D4F00159DFA /* Main.storyboard */,
+				4268B4A62056438500159DFA /* SharingImageTableViewController.swift */,
+				4268B4A4205619D900159DFA /* SharingImageTableViewCell.swift */,
 				4268B48320545D5100159DFA /* Assets.xcassets */,
 				4268B48520545D5100159DFA /* LaunchScreen.storyboard */,
 				4268B48820545D5100159DFA /* Info.plist */,
+				4268B4A22055F9E500159DFA /* SharingImage.swift */,
 			);
 			path = "Share With Images";
 			sourceTree = "<group>";
@@ -201,7 +213,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4268B4A32055F9E500159DFA /* SharingImage.swift in Sources */,
+				4268B4A5205619D900159DFA /* SharingImageTableViewCell.swift in Sources */,
+				4268B4A72056438500159DFA /* SharingImageTableViewController.swift in Sources */,
 				4268B47F20545D4F00159DFA /* ViewController.swift in Sources */,
+				4268B4A12055E81000159DFA /* SharingImageViewController.swift in Sources */,
 				4268B47B20545D4F00159DFA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
