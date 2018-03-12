@@ -123,4 +123,15 @@ class SharingImageTableViewController: UITableViewController {
         
         sharingImages += [sharingImage1, sharingImage2]
     }
+    
+    //MARK: Actions
+    
+    @IBAction func unwindToSharingImageList(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? SharingImageViewController, let sharingImage = sourceViewController.sharingImage {
+            // Add a new meal.
+            let newIndexPath = IndexPath(row: sharingImages.count, section: 0)
+            sharingImages.append(sharingImage)
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
+        }
+    }
 }

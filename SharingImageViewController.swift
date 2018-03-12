@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import os.log
 
 class SharingImageViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -16,6 +17,13 @@ class SharingImageViewController: UIViewController, UITextFieldDelegate, UIImage
     @IBOutlet weak var sharingImageDescriptionTextField: UITextField!
     @IBOutlet weak var sharingImagePhotoView: UIImageView!
     @IBOutlet weak var sharingImageTypeSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    
+    /*
+     This value is either passed by `SharingImageTableViewController` in `prepare(for:sender:)`
+     or constructed as part of adding a new SharingImage.
+     */
+    var sharingImage: SharingImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +31,9 @@ class SharingImageViewController: UIViewController, UITextFieldDelegate, UIImage
         // Handle the text fields' user input through delegate callbacks.
         sharingImageNameTextField.delegate = self
         sharingImageDescriptionTextField.delegate = self
+        
+        // Enable the Save button only if the name and description text fields are not empty.
+        updateSaveButtonState()
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,18 +41,12 @@ class SharingImageViewController: UIViewController, UITextFieldDelegate, UIImage
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
     //MARK: UITextFieldDelegate
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        // Disable the Save button while editing.
+        saveButton.isEnabled = false
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // Hide the keyboard.
@@ -50,7 +55,9 @@ class SharingImageViewController: UIViewController, UITextFieldDelegate, UIImage
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        updateSaveButtonState()
         if(textField == sharingImageNameTextField){
+            navigationItem.title = textField.text
         }
     }
     
@@ -74,6 +81,35 @@ class SharingImageViewController: UIViewController, UITextFieldDelegate, UIImage
         // Dismiss the picker.
         dismiss(animated: true, completion: nil)
     }
+    
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        // Configure the destination view controller only when the save button is pressed.
+        guard let button = sender as? UIBarButtonItem, button === saveButton else {
+            os_log("The save button was not pressed, cancelling", log: OSLog.default, type: .debug)
+            return
+        }
+        
+        let sharingImageName = sharingImageNameTextField.text ?? ""
+        let sharingImagePhoto = sharingImagePhotoView.image
+        let sharingImageDescription = sharingImageDescriptionTextField.text ?? ""
+        var sharingImageType = SharingImage.sharingImageType.Person
+        switch sharingImageTypeSegmentedControl.selectedSegmentIndex
+        {
+        case 1:
+            sharingImageType = SharingImage.sharingImageType.Action
+        case 2:
+            sharingImageType = SharingImage.sharingImageType.FreeformInput
+        default:
+            sharingImageType = SharingImage.sharingImageType.Person
+        }
+        
+        // Set the sharingImage to be passed to SharingImageTableViewController after the unwind segue.
+        sharingImage = SharingImage(name: sharingImageName, photo: sharingImagePhoto!, description: sharingImageDescription, type: sharingImageType)
+     }
     
     //MARK: Actions
     
@@ -104,6 +140,14 @@ class SharingImageViewController: UIViewController, UITextFieldDelegate, UIImage
         imagePickerController.delegate = self
         present(imagePickerController, animated: true, completion: nil)
         
+    }
+    
+    //MARK: Private Methods
+    private func updateSaveButtonState() {
+        // Disable the Save button if the text field is empty.
+        let nameText = sharingImageNameTextField.text ?? ""
+        let descriptionText = sharingImageDescriptionTextField.text ?? ""
+        saveButton.isEnabled = !nameText.isEmpty && !descriptionText.isEmpty
     }
     
 }
