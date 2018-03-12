@@ -165,7 +165,11 @@
                         <viewLayoutGuide key="safeArea" id="dbY-UN-CtG"/>
                     </view>
                     <navigationItem key="navigationItem" title="New Sharing Image" id="xOh-Fg-jXK">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="sXb-rg-0n1"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="sXb-rg-0n1">
+                            <connections>
+                                <action selector="cancel:" destination="uY9-jx-JRC" id="KBn-XW-tCi"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="seV-xw-mpE">
                             <connections>
                                 <segue destination="kng-Ea-fl5" kind="unwind" unwindAction="unwindToSharingImageListWithSender:" id="GJi-6P-z31"/>
