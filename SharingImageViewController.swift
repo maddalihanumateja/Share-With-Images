@@ -102,7 +102,20 @@ class SharingImageViewController: UIViewController, UITextFieldDelegate, UIImage
      // MARK: - Navigation
      
     @IBAction func cancel(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
+        
+        // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
+        let isPresentingInAddSharingImageMode = presentingViewController is UINavigationController
+        
+        if isPresentingInAddSharingImageMode {
+            dismiss(animated: true, completion: nil)
+        }
+        else if let owningNavigationController = navigationController{
+            owningNavigationController.popViewController(animated: true)
+        }
+        else {
+            fatalError("The SharingImageViewController is not inside a navigation controller.")
+        }
+        
     }
     // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
