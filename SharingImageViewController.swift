@@ -16,6 +16,7 @@ class SharingImageViewController: UIViewController, UITextFieldDelegate, UIImage
     @IBOutlet weak var sharingImageNameTextField: UITextField!
     @IBOutlet weak var sharingImageDescriptionTextField: UITextField!
     @IBOutlet weak var sharingImagePhotoView: UIImageView!
+    @IBOutlet weak var sharingImageTypeSegmentedControl: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +79,17 @@ class SharingImageViewController: UIViewController, UITextFieldDelegate, UIImage
     
     //MARK: Actions
     
+    @IBAction func typeSelectionChanged(_ sender: UISegmentedControl) {
+        switch sharingImageTypeSegmentedControl.selectedSegmentIndex
+        {
+        case 1:
+            sharingImageDescriptionTextField.placeholder = "What is this image supposed to do?"
+        case 2:
+            sharingImageDescriptionTextField.placeholder = "What do you want to send?"
+        default:
+            sharingImageDescriptionTextField.placeholder = "Who is in this image?"
+        }
+    }
     @IBAction func selectSharingImageFromPhotoLibrary(_ sender: UITapGestureRecognizer) {
         
         // Hide the keyboard.

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14101" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8gE-rC-WTs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14101" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uY9-jx-JRC">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -130,10 +130,13 @@
                                                     <segment title="Action"/>
                                                     <segment title="Input"/>
                                                 </segments>
+                                                <connections>
+                                                    <action selector="typeSelectionChanged:" destination="uY9-jx-JRC" eventType="valueChanged" id="h7X-wa-FvV"/>
+                                                </connections>
                                             </segmentedControl>
                                         </subviews>
                                     </stackView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Who is in this image?/ What is it supposed to do?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dS6-4V-QCT">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Who is in this image?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dS6-4V-QCT">
                                         <rect key="frame" x="0.0" y="430.5" width="375" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -159,6 +162,7 @@
                         <outlet property="sharingImageNameLabel" destination="WPy-Sm-RBj" id="riZ-XV-9IW"/>
                         <outlet property="sharingImageNameTextField" destination="DCp-Gk-egP" id="U8L-uH-q7l"/>
                         <outlet property="sharingImagePhotoView" destination="cPe-Ro-vGc" id="bcP-ao-K7p"/>
+                        <outlet property="sharingImageTypeSegmentedControl" destination="ILb-Dx-3MO" id="6IN-dC-Gt7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bsu-1V-J4s" userLabel="First Responder" sceneMemberID="firstResponder"/>
