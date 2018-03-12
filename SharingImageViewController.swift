@@ -12,7 +12,6 @@ class SharingImageViewController: UIViewController, UITextFieldDelegate, UIImage
     
     //MARK: Properties
     
-    @IBOutlet weak var sharingImageNameLabel: UILabel!
     @IBOutlet weak var sharingImageNameTextField: UITextField!
     @IBOutlet weak var sharingImageDescriptionTextField: UITextField!
     @IBOutlet weak var sharingImagePhotoView: UIImageView!
@@ -52,7 +51,6 @@ class SharingImageViewController: UIViewController, UITextFieldDelegate, UIImage
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if(textField == sharingImageNameTextField){
-            sharingImageNameLabel.text = textField.text
         }
     }
     

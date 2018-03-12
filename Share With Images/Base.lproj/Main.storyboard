@@ -96,22 +96,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="b0J-KU-bNf">
-                                <rect key="frame" x="0.0" y="40" width="375" height="460.5"/>
+                                <rect key="frame" x="0.0" y="40" width="375" height="432"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SharingImage Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPy-Sm-RBj">
-                                        <rect key="frame" x="0.0" y="0.0" width="155" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type the name of the image here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DCp-Gk-egP">
-                                        <rect key="frame" x="0.0" y="28.5" width="375" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
                                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="320" image="defaultSharingImage" translatesAutoresizingMaskIntoConstraints="NO" id="cPe-Ro-vGc">
-                                        <rect key="frame" x="0.0" y="66.5" width="320" height="320"/>
+                                        <rect key="frame" x="0.0" y="38" width="320" height="320"/>
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="cPe-Ro-vGc" secondAttribute="height" multiplier="1:1" id="MAo-76-jFC"/>
@@ -121,7 +115,7 @@
                                         </connections>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="CNd-bp-DEk">
-                                        <rect key="frame" x="0.0" y="394.5" width="317.5" height="28"/>
+                                        <rect key="frame" x="0.0" y="366" width="317.5" height="28"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This image means: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Dw-3S-zeq">
                                                 <rect key="frame" x="0.0" y="4" width="147.5" height="20.5"/>
@@ -143,7 +137,7 @@
                                         </subviews>
                                     </stackView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Who is in this image?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dS6-4V-QCT">
-                                        <rect key="frame" x="0.0" y="430.5" width="375" height="30"/>
+                                        <rect key="frame" x="0.0" y="402" width="375" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -165,7 +159,6 @@
                     </view>
                     <connections>
                         <outlet property="sharingImageDescriptionTextField" destination="dS6-4V-QCT" id="XQL-EE-Bub"/>
-                        <outlet property="sharingImageNameLabel" destination="WPy-Sm-RBj" id="riZ-XV-9IW"/>
                         <outlet property="sharingImageNameTextField" destination="DCp-Gk-egP" id="U8L-uH-q7l"/>
                         <outlet property="sharingImagePhotoView" destination="cPe-Ro-vGc" id="bcP-ao-K7p"/>
                         <outlet property="sharingImageTypeSegmentedControl" destination="ILb-Dx-3MO" id="6IN-dC-Gt7"/>
