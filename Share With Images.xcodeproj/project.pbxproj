@@ -15,6 +15,7 @@
 		4268B48720545D5100159DFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4268B48520545D5100159DFA /* LaunchScreen.storyboard */; };
 		4268B49220545D5100159DFA /* Share_With_ImagesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4268B49120545D5100159DFA /* Share_With_ImagesTests.swift */; };
 		4268B4A12055E81000159DFA /* SharingImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4268B4A02055E81000159DFA /* SharingImageViewController.swift */; };
+		4268B4A32055F9E500159DFA /* SharingImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4268B4A22055F9E500159DFA /* SharingImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		4268B49120545D5100159DFA /* Share_With_ImagesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Share_With_ImagesTests.swift; sourceTree = "<group>"; };
 		4268B49320545D5100159DFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4268B4A02055E81000159DFA /* SharingImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingImageViewController.swift; sourceTree = "<group>"; };
+		4268B4A22055F9E500159DFA /* SharingImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				4268B48320545D5100159DFA /* Assets.xcassets */,
 				4268B48520545D5100159DFA /* LaunchScreen.storyboard */,
 				4268B48820545D5100159DFA /* Info.plist */,
+				4268B4A22055F9E500159DFA /* SharingImage.swift */,
 			);
 			path = "Share With Images";
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4268B4A32055F9E500159DFA /* SharingImage.swift in Sources */,
 				4268B47F20545D4F00159DFA /* ViewController.swift in Sources */,
 				4268B4A12055E81000159DFA /* SharingImageViewController.swift in Sources */,
 				4268B47B20545D4F00159DFA /* AppDelegate.swift in Sources */,
