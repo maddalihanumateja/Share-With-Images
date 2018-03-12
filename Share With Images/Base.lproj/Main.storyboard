@@ -35,7 +35,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="b0J-KU-bNf">
-                                <rect key="frame" x="0.0" y="40" width="375" height="424.5"/>
+                                <rect key="frame" x="0.0" y="40" width="375" height="460.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SharingImage Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPy-Sm-RBj">
                                         <rect key="frame" x="0.0" y="0.0" width="155" height="20.5"/>
@@ -59,8 +59,27 @@
                                             <outletCollection property="gestureRecognizers" destination="1QO-GU-w4p" appends="YES" id="weg-MN-Kp3"/>
                                         </connections>
                                     </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="CNd-bp-DEk">
+                                        <rect key="frame" x="0.0" y="394.5" width="317.5" height="28"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This image means: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Dw-3S-zeq">
+                                                <rect key="frame" x="0.0" y="4" width="147.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ILb-Dx-3MO">
+                                                <rect key="frame" x="147.5" y="0.0" width="170" height="29"/>
+                                                <segments>
+                                                    <segment title="Person"/>
+                                                    <segment title="Action"/>
+                                                    <segment title="Input"/>
+                                                </segments>
+                                            </segmentedControl>
+                                        </subviews>
+                                    </stackView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Who is in this image?/ What is it supposed to do?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dS6-4V-QCT">
-                                        <rect key="frame" x="0.0" y="394.5" width="375" height="30"/>
+                                        <rect key="frame" x="0.0" y="430.5" width="375" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
