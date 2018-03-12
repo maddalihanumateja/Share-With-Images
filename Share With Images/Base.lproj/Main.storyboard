@@ -11,10 +11,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--TabBarController-->
         <scene sceneID="dSv-VU-CdO">
             <objects>
-                <tabBarController id="Thb-xG-lA5" sceneMemberID="viewController">
+                <tabBarController title="TabBarController" id="Thb-xG-lA5" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EpW-lK-Xic">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -215,10 +215,10 @@
             </objects>
             <point key="canvasLocation" x="1652" y="-392"/>
         </scene>
-        <!--Images-->
+        <!--ManageSharingImageController-->
         <scene sceneID="nl9-Nj-t2n">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PPi-p9-KxB" sceneMemberID="viewController">
+                <navigationController title="ManageSharingImageController" automaticallyAdjustsScrollViewInsets="NO" id="PPi-p9-KxB" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Images" image="gallery" id="Spx-il-3NM"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ura-IK-8lf">
@@ -234,10 +234,10 @@
             </objects>
             <point key="canvasLocation" x="-786" y="-412"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--AddSharingImageController-->
         <scene sceneID="TZy-iZ-tTb">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jPX-im-MCS" sceneMemberID="viewController">
+                <navigationController title="AddSharingImageController" automaticallyAdjustsScrollViewInsets="NO" id="jPX-im-MCS" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6ni-UD-KSe">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

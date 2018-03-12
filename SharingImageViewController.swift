@@ -103,16 +103,19 @@ class SharingImageViewController: UIViewController, UITextFieldDelegate, UIImage
      
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         
-        // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
-        let isPresentingInAddSharingImageMode = presentingViewController is UINavigationController
+        // Depending on the title of the presentating controller, this view controller needs to be dismissed in two different ways.
         
-        if isPresentingInAddSharingImageMode {
+        let presentingViewControllerTitle: String = presentingViewController?.title ?? "Unknown"
+        
+        switch presentingViewControllerTitle
+        {
+        case "TabBarController":
             dismiss(animated: true, completion: nil)
-        }
-        else if let owningNavigationController = navigationController{
-            owningNavigationController.popViewController(animated: true)
-        }
-        else {
+        case "Unknown":
+            let owningNavigationController = navigationController
+            owningNavigationController!.popViewController(animated: true)
+        default:
+            print("Unknown mode")
             fatalError("The SharingImageViewController is not inside a navigation controller.")
         }
         
