@@ -36,16 +36,16 @@ class SharingImageViewController: UIViewController, UITextFieldDelegate, UIImage
         if let sharingImage = sharingImage {
             navigationItem.title = sharingImage.name
             sharingImageNameTextField.text   = sharingImage.name
-            sharingImageDescriptionTextField.text = sharingImage.description
+            sharingImageDescriptionTextField.text = sharingImage.photoDescription
             sharingImagePhotoView.image = sharingImage.photo
             switch sharingImage.type
             {
             case SharingImage.sharingImageType.Action:
-                sharingImageTypeSegmentedControl.selectedSegmentIndex = 1
+                sharingImageTypeSegmentedControl.selectedSegmentIndex = SharingImage.sharingImageType.Action.rawValue
             case SharingImage.sharingImageType.FreeformInput:
-                sharingImageTypeSegmentedControl.selectedSegmentIndex = 2
+                sharingImageTypeSegmentedControl.selectedSegmentIndex = SharingImage.sharingImageType.FreeformInput.rawValue
             case SharingImage.sharingImageType.Person:
-                sharingImageTypeSegmentedControl.selectedSegmentIndex = 0
+                sharingImageTypeSegmentedControl.selectedSegmentIndex = SharingImage.sharingImageType.Person.rawValue
             }
         }
         
@@ -132,16 +132,16 @@ class SharingImageViewController: UIViewController, UITextFieldDelegate, UIImage
         var sharingImageType = SharingImage.sharingImageType.Person
         switch sharingImageTypeSegmentedControl.selectedSegmentIndex
         {
-        case 1:
+        case SharingImage.sharingImageType.Action.rawValue:
             sharingImageType = SharingImage.sharingImageType.Action
-        case 2:
+        case SharingImage.sharingImageType.FreeformInput.rawValue:
             sharingImageType = SharingImage.sharingImageType.FreeformInput
         default:
             sharingImageType = SharingImage.sharingImageType.Person
         }
         
         // Set the sharingImage to be passed to SharingImageTableViewController after the unwind segue.
-        sharingImage = SharingImage(name: sharingImageName, photo: sharingImagePhoto!, description: sharingImageDescription, type: sharingImageType)
+        sharingImage = SharingImage(name: sharingImageName, photo: sharingImagePhoto!, photoDescription: sharingImageDescription, type: sharingImageType)
      }
     
     //MARK: Actions
@@ -149,9 +149,9 @@ class SharingImageViewController: UIViewController, UITextFieldDelegate, UIImage
     @IBAction func typeSelectionChanged(_ sender: UISegmentedControl) {
         switch sharingImageTypeSegmentedControl.selectedSegmentIndex
         {
-        case 1:
+        case SharingImage.sharingImageType.Action.rawValue:
             sharingImageDescriptionTextField.placeholder = "What is this image supposed to do?"
-        case 2:
+        case SharingImage.sharingImageType.FreeformInput.rawValue:
             sharingImageDescriptionTextField.placeholder = "What do you want to send?"
         default:
             sharingImageDescriptionTextField.placeholder = "Who is in this image?"

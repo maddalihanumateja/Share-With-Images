@@ -21,8 +21,14 @@ class SharingImageTableViewController: UITableViewController {
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem
         
-        // Load the sample data.
-        loadSampleSharingImages()
+        // Load any saved meals, otherwise load sample data.
+        if let savedSharingImages = loadSharingImages() {
+            sharingImages += savedSharingImages
+        }
+        else {
+            // Load the sample data.
+            loadSampleSharingImages()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,7 +55,7 @@ class SharingImageTableViewController: UITableViewController {
             fatalError("The dequeued cell is not an instance of SharingImageTableViewCell.")
         }
 
-        // Fetches the appropriate meal for the data source layout.
+        // Fetches the appropriate Sharing Image for the data source layout.
         let sharingImage = sharingImages[indexPath.row]
 
         cell.nameLabel.text = sharingImage.name
@@ -62,7 +68,7 @@ class SharingImageTableViewController: UITableViewController {
         case SharingImage.sharingImageType.FreeformInput:
             cell.typeLabel.text = "Input"
         }
-        cell.descriptionLabel.text = sharingImage.description
+        cell.descriptionLabel.text = sharingImage.photoDescription
 
         return cell
     }
@@ -80,6 +86,10 @@ class SharingImageTableViewController: UITableViewController {
         if editingStyle == .delete {
             // Delete the row from the data source
             sharingImages.remove(at: indexPath.row)
+            
+            // Save the existing objects in sharingImages.
+            saveSharingImages()
+            
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -129,22 +139,6 @@ class SharingImageTableViewController: UITableViewController {
         }
         
     }
-
-    //MARK: Private Methods
-    
-    private func loadSampleSharingImages() {
-        let obamaPhoto = UIImage(named: "obama")
-        let gmailPhoto = UIImage(named: "gmail")
-        
-        guard let sharingImage1 = SharingImage(name: "obama", photo: obamaPhoto!, description: "president", type: SharingImage.sharingImageType.Person) else {
-            fatalError("Unable to instantiate sharingImage1")
-        }
-        guard let sharingImage2 = SharingImage(name: "gmail", photo: gmailPhoto!, description: "send an email", type: SharingImage.sharingImageType.Action) else {
-            fatalError("Unable to instantiate sharingImage2")
-        }
-        
-        sharingImages += [sharingImage1, sharingImage2]
-    }
     
     //MARK: Actions
     
@@ -164,6 +158,39 @@ class SharingImageTableViewController: UITableViewController {
                 sharingImages.append(sharingImage)
                 tableView.insertRows(at: [newIndexPath], with: .automatic)
             }
+            
+            // Save the existing objects in sharingImages.
+            saveSharingImages()
         }
+    }
+    
+    //MARK: Private Methods
+    
+    private func loadSampleSharingImages() {
+        let obamaPhoto = UIImage(named: "obama")
+        let gmailPhoto = UIImage(named: "gmail")
+        
+        guard let sharingImage1 = SharingImage(name: "obama", photo: obamaPhoto!, photoDescription: "president", type: SharingImage.sharingImageType.Person) else {
+            fatalError("Unable to instantiate sharingImage1")
+        }
+        guard let sharingImage2 = SharingImage(name: "gmail", photo: gmailPhoto!, photoDescription: "send an email", type: SharingImage.sharingImageType.Action) else {
+            fatalError("Unable to instantiate sharingImage2")
+        }
+        
+        sharingImages += [sharingImage1, sharingImage2]
+    }
+    
+    private func saveSharingImages() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(sharingImages, toFile: SharingImage.ArchiveURL.path)
+        
+        if isSuccessfulSave {
+            os_log("sharingImages successfully saved.", log: OSLog.default, type: .debug)
+        } else {
+            os_log("Failed to save sharingImages...", log: OSLog.default, type: .error)
+        }
+    }
+    
+    private func loadSharingImages() -> [SharingImage]? {
+        return NSKeyedUnarchiver.unarchiveObject(withFile: SharingImage.ArchiveURL.path) as? [SharingImage]
     }
 }
