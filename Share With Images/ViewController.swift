@@ -84,6 +84,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         DispatchQueue.main.async {
             let imageName = referenceImage.name ?? ""
             print("Detected image “\(imageName)”")
+            if imageName == "gmail"{
+                let email = "foo@bar.com"
+                if let url = URL(string: "mailto:\(email)") {
+                    UIApplication.shared.open(url)
+                }
+            }
         }
     
         return node
