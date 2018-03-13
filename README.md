@@ -11,7 +11,8 @@ Requirements
    - [Get started with Swift](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097)
    - [Get started with iOS apps](https://developer.apple.com/library/content/referencelibrary/GettingStarted/DevelopiOSAppsSwift/index.html#//apple_ref/doc/uid/TP40015214-CH2-SW1): This gives a good intro to XCode as well
    - [Build your first AR Experience](https://developer.apple.com/documentation/arkit/building_your_first_ar_experience)
-   - [Play around with Image recognition using ARKit and other related examples](https://developer.apple.com/documentation/arkit/recognizing_images_in_an_ar_experience)
+   - [Image recognition using ARKit and other related examples](https://developer.apple.com/documentation/arkit/recognizing_images_in_an_ar_experience)
+   There are swift playgrounds in most of these links. Download them and try playing around with the code.
    
 Expected Future Work:
 
