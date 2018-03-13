@@ -4,8 +4,8 @@ AR iOS app for a vision-based tangible interface
 Requirements
 
  - Tech:
-  - Device with iOS 11.3 or greater
-  - XCode 9.3 or greater to build the code (with ARKit)
+   - Device with iOS 11.3 or greater
+   - XCode 9.3 or greater to build the code (with ARKit)
   
  - Knowledge: Ability to read, understand and/or write iOS app code. Don't worry if you're a novice or outright beginner. I've used and adapted apple tutorial code myself to write this app. Go through the following tutorials and links in the given order and you should be able to understand my code
    - [Get started with Swift](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html#//apple_ref/doc/uid/TP40014097)
