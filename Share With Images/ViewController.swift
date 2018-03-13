@@ -26,7 +26,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = false
-
+        resetTracking()
     }
     
     override func viewWillAppear(_ animated: Bool) {
