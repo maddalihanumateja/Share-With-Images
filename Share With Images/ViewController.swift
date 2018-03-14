@@ -11,6 +11,14 @@ import SceneKit
 import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
+    
+    //MARK: Properties
+    
+    // A data structure to keep track of the images that have already been  detected
+    // Its helps to have an ordered class for this.
+    // We may need to present different messages for different types of SharingImages
+    
+    var sharingImageStack: [String] = Array<String>()
 
     @IBOutlet var sceneView: ARSCNView!
     
@@ -54,8 +62,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         let node = SCNNode()
         
-        guard let imageAnchor = anchor as? ARImageAnchor else { return node}
+        guard let imageAnchor = anchor as? ARImageAnchor else { return node }
         let referenceImage = imageAnchor.referenceImage
+        
         updateQueue.async {
             
             // Create a plane to visualize the initial position of the detected image.
@@ -83,12 +92,25 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         DispatchQueue.main.async {
             let imageName = referenceImage.name ?? ""
+            self.sharingImageStack.append(imageName)
             print("Detected image “\(imageName)”")
-            if imageName == "gmail"{
-                let email = "foo@bar.com"
-                if let url = URL(string: "mailto:\(email)") {
-                    UIApplication.shared.open(url)
+            // An example implementation where a gmail photo triggers opening the email app
+            // when the obama picture has been shown previously (and is stored in the stack)
+            if imageName == "gmail;1"{
+                if(self.sharingImageStack.contains("obama;0")){
+                    print("Send an email to obama")
+                    let email = SharingImage.sharingEmail // This email can be a property of the sharingimage objects instead of a class property as in this example
+                    if let url = URL(string: "mailto:\(email)") {
+                        UIApplication.shared.open(url)
+                    }
                 }
+                else{
+                    print("Show obama picture first")
+                    // Reset tracking here.
+                    // Better solutions would be to allow unstructured input
+                    // Or maybe check whether the previously detected mail image is still in the camera view assuming the camera isn't moving and its objects that go in and out of the view. Objects outside the view could be dropped and re-detected when they enter the scene.
+                }
+                self.sharingImageStack.removeAll()
             }
         }
     
@@ -125,7 +147,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         for (index,referenceCGImage) in referenceCGImages.enumerated(){
             let referenceARImage = ARReferenceImage(referenceCGImage, orientation: CGImagePropertyOrientation.up, physicalWidth: CGFloat(0.1))
-            referenceARImage.name = sharingImages[index].name
+            referenceARImage.name = "\(sharingImages[index].name);\(sharingImages[index].type.rawValue)"
             referenceARImages.insert(referenceARImage)
         }
         
