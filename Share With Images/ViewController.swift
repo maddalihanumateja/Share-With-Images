@@ -14,6 +14,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     //MARK: Properties
     
+    //Hide the default status bar in this view
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     // A data structure to keep track of the images that have already been  detected
     // Its helps to have an ordered class for this.
     // We may need to present different messages for different types of SharingImages
@@ -34,6 +39,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = false
+        
         resetTracking()
     }
     
