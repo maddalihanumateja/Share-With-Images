@@ -27,6 +27,7 @@ class SharingImage: NSObject, NSCoding {
     var photo: UIImage
     var photoDescription: String?
     var type: sharingImageType
+    static let sharingEmail: String = "xyz@gmail.com"
     
     //MARK: Archiving Paths
     
