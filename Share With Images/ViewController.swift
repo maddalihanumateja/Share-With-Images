@@ -14,6 +14,16 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     //MARK: Properties
     
+    /// The view controller that displays the status and "restart experience" UI.
+    lazy var statusViewController: StatusViewController = {
+        return childViewControllers.lazy.flatMap({ $0 as? StatusViewController }).first!
+    }()
+    
+    //Hide the default status bar in this view
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     // A data structure to keep track of the images that have already been  detected
     // Its helps to have an ordered class for this.
     // We may need to present different messages for different types of SharingImages
@@ -21,6 +31,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     var sharingImageStack: [String] = Array<String>()
 
     @IBOutlet var sceneView: ARSCNView!
+    @IBOutlet weak var blurView: UIVisualEffectView!
+    
     
     /// A serial queue for thread safety when modifying the SceneKit node graph.
     let updateQueue = DispatchQueue(label: Bundle.main.bundleIdentifier! +
@@ -31,9 +43,16 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Set the view's delegate
         sceneView.delegate = self
+        sceneView.session.delegate = self as? ARSessionDelegate
+        
+        // Hook up status view controller callback(s).
+        statusViewController.restartExperienceHandler = { [unowned self] in
+            self.restartExperience()
+        }
         
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = false
+        
         resetTracking()
     }
     
@@ -93,19 +112,22 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         DispatchQueue.main.async {
             let imageName = referenceImage.name ?? ""
             self.sharingImageStack.append(imageName)
-            print("Detected image “\(imageName)”")
+            self.statusViewController.cancelAllScheduledMessages()
+            self.statusViewController.showMessage("Detected image “\(imageName.split(separator:";")[0])”")
             // An example implementation where a gmail photo triggers opening the email app
             // when the obama picture has been shown previously (and is stored in the stack)
             if imageName == "gmail;1"{
                 if(self.sharingImageStack.contains("obama;0")){
-                    print("Send an email to obama")
+                    self.statusViewController.cancelAllScheduledMessages()
+                    self.statusViewController.showMessage("Send an email to obama")
                     let email = SharingImage.sharingEmail // This email can be a property of the sharingimage objects instead of a class property as in this example
                     if let url = URL(string: "mailto:\(email)") {
                         UIApplication.shared.open(url)
                     }
                 }
                 else{
-                    print("Show obama picture first")
+                    self.statusViewController.cancelAllScheduledMessages()
+                    self.statusViewController.showMessage("Show obama picture first")
                     // Reset tracking here.
                     // Better solutions would be to allow unstructured input
                     // Or maybe check whether the previously detected mail image is still in the camera view assuming the camera isn't moving and its objects that go in and out of the view. Objects outside the view could be dropped and re-detected when they enter the scene.
@@ -130,12 +152,18 @@ class ViewController: UIViewController, ARSCNViewDelegate {
  
     // MARK: - Session management (Image detection setup)
     
+    /// Prevents restarting the session while a restart is in progress.
+    var isRestartAvailable = true
+    
     /// Creates a new AR configuration to run on the `session`.
     /// - Tag: ARReferenceImage-Loading
     func resetTracking() {
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
+        
+        // Clear the sharingImageStack to delete records of previously detected images
+        self.sharingImageStack.removeAll()
         
         // Load the images to be tracked and cast them as ARReferenceImage
         guard let sharingImages =  NSKeyedUnarchiver.unarchiveObject(withFile: SharingImage.ArchiveURL.path) as? [SharingImage] else {
@@ -156,18 +184,86 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
     }
     
-    func session(_ session: ARSession, didFailWithError error: Error) {
-        // Present an error message to the user
+    func session(_ session: ARSession, cameraDidChangeTrackingState camera: ARCamera) {
+        statusViewController.showTrackingQualityInfo(for: camera.trackingState, autoHide: true)
         
+        switch camera.trackingState {
+        case .notAvailable, .limited:
+            statusViewController.escalateFeedback(for: camera.trackingState, inSeconds: 3.0)
+        case .normal:
+            statusViewController.cancelScheduledMessage(for: .trackingStateEscalation)
+        }
+    }
+    
+    func session(_ session: ARSession, didFailWithError error: Error) {
+        guard error is ARError else { return }
+        
+        let errorWithInfo = error as NSError
+        let messages = [
+            errorWithInfo.localizedDescription,
+            errorWithInfo.localizedFailureReason,
+            errorWithInfo.localizedRecoverySuggestion
+        ]
+        
+        // Use `flatMap(_:)` to remove optional error messages.
+        let errorMessage = messages.compactMap({ $0 }).joined(separator: "\n")
+        
+        DispatchQueue.main.async {
+            self.displayErrorMessage(title: "The AR session failed.", message: errorMessage)
+        }
     }
     
     func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
-        
+        blurView.isHidden = false
+        statusViewController.showMessage("""
+        SESSION INTERRUPTED
+        The session will be reset after the interruption has ended.
+        """, autoHide: false)
     }
     
     func sessionInterruptionEnded(_ session: ARSession) {
+        
+        blurView.isHidden = true
+        statusViewController.showMessage("RESETTING SESSION")
+
         // Reset tracking and/or remove existing anchors if consistent tracking is required
+        restartExperience()
+    }
+    
+    func sessionShouldAttemptRelocalization(_ session: ARSession) -> Bool {
+        return true
+    }
+    
+    // MARK: - Error handling
+    
+    func displayErrorMessage(title: String, message: String) {
+        // Blur the background.
+        blurView.isHidden = false
+        
+        // Present an alert informing about the error that has occurred.
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let restartAction = UIAlertAction(title: "Restart Session", style: .default) { _ in
+            alertController.dismiss(animated: true, completion: nil)
+            self.blurView.isHidden = true
+            self.resetTracking()
+        }
+        alertController.addAction(restartAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    // MARK: - Interface Actions
+    
+    func restartExperience() {
+        guard isRestartAvailable else { return }
+        isRestartAvailable = false
+        
+        statusViewController.cancelAllScheduledMessages()
+        
         resetTracking()
+        
+        // Disable restart for a while in order to give the session time to restart.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            self.isRestartAvailable = true
+        }
     }
 }
