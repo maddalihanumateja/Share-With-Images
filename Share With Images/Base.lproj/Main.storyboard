@@ -37,6 +37,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8WX-73-2ai" userLabel="Blur View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="YvZ-jD-2ph">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IyO-SQ-C3I" userLabel="Scene View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -54,6 +63,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Camera" image="camera" id="Y47-xB-3hy"/>
                     <connections>
+                        <outlet property="blurView" destination="8WX-73-2ai" id="eqO-9g-NpM"/>
                         <outlet property="sceneView" destination="IyO-SQ-C3I" id="lgb-JL-Ecc"/>
                     </connections>
                 </viewController>
@@ -270,7 +280,7 @@
         <!--Status View Controller-->
         <scene sceneID="Oci-k7-KuD">
             <objects>
-                <viewController title="Status View Controller" id="e7C-Ju-Xbe" sceneMemberID="viewController">
+                <viewController title="Status View Controller" id="e7C-Ju-Xbe" customClass="StatusViewController" customModule="Share_With_Images" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Cp-70-fHd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -333,6 +343,9 @@
                                 <state key="normal" image="restart"/>
                                 <state key="selected" image="restartPressed"/>
                                 <state key="highlighted" image="restartPressed"/>
+                                <connections>
+                                    <action selector="restartExperience:" destination="e7C-Ju-Xbe" eventType="touchUpInside" id="Paf-34-cZh"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -345,6 +358,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zT2-Rg-OrO"/>
                     </view>
+                    <connections>
+                        <outlet property="messageLabel" destination="wjQ-Xk-GF7" id="VWe-3Z-pBc"/>
+                        <outlet property="messagePanel" destination="CmX-3P-gpe" id="YmA-oc-ApZ"/>
+                        <outlet property="restartExperienceButton" destination="opN-Ok-zTQ" id="C3o-ls-lUI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iPB-bX-SV5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

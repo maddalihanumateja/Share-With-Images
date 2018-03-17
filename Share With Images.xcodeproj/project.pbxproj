@@ -18,6 +18,7 @@
 		4268B4A32055F9E500159DFA /* SharingImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4268B4A22055F9E500159DFA /* SharingImage.swift */; };
 		4268B4A5205619D900159DFA /* SharingImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4268B4A4205619D900159DFA /* SharingImageTableViewCell.swift */; };
 		4268B4A72056438500159DFA /* SharingImageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4268B4A62056438500159DFA /* SharingImageTableViewController.swift */; };
+		42F4A198205CDFFC00C50F96 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F4A197205CDFFC00C50F96 /* StatusViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		4268B4A22055F9E500159DFA /* SharingImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingImage.swift; sourceTree = "<group>"; };
 		4268B4A4205619D900159DFA /* SharingImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingImageTableViewCell.swift; sourceTree = "<group>"; };
 		4268B4A62056438500159DFA /* SharingImageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingImageTableViewController.swift; sourceTree = "<group>"; };
+		42F4A197205CDFFC00C50F96 /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				4268B47C20545D4F00159DFA /* art.scnassets */,
 				4268B47E20545D4F00159DFA /* ViewController.swift */,
 				4268B48020545D4F00159DFA /* Main.storyboard */,
+				42F4A197205CDFFC00C50F96 /* StatusViewController.swift */,
 				4268B4A62056438500159DFA /* SharingImageTableViewController.swift */,
 				4268B4A4205619D900159DFA /* SharingImageTableViewCell.swift */,
 				4268B48320545D5100159DFA /* Assets.xcassets */,
@@ -213,6 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42F4A198205CDFFC00C50F96 /* StatusViewController.swift in Sources */,
 				4268B4A32055F9E500159DFA /* SharingImage.swift in Sources */,
 				4268B4A5205619D900159DFA /* SharingImageTableViewCell.swift in Sources */,
 				4268B4A72056438500159DFA /* SharingImageTableViewController.swift in Sources */,
