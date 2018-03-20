@@ -125,12 +125,19 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             node.addChildNode(planeNode)
         }
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.sync {
             //Display the status message
             self.statusViewController.cancelAllScheduledMessages()
             self.statusViewController.showMessage(aiResponse.returnDialogue)
             
-            print("previousReturnCorrectInput = \(previousNode.previousReturnCorrectInput)")
+            // Perform the action (if any) after a delay of a few seconds
+            let actionDelay: Int = 3
+            if (aiResponse.returnActionURL != nil){
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(actionDelay), execute: {
+                        UIApplication.shared.open(aiResponse.returnActionURL!)
+                    }
+                )
+            }
         }
         
         // We want the ARAnchor for the incorrect input image to be removed ideally after the next image is detected (using something like removal after a delay just complicates things if the object stays in view). Else the image will just continue to be tracked invisibly till the ARSession is reset

@@ -52,7 +52,7 @@ class AIFeedbackController {
     
     //MARK: Generating responses
     
-    func generateResponse(inputSharingImage: String) -> (returnCorrectInput: Bool, returnDialogue: String) {
+    func generateResponse(inputSharingImage: String) -> (returnCorrectInput: Bool, returnDialogue: String, returnActionURL: URL?) {
         var sharingImageMeta = inputSharingImage.split(separator:";")
         let sharingImageName:String = String(sharingImageMeta[0])
         let sharingImageType: SharingImage.sharingImageType = SharingImage.sharingImageType(rawValue:Int(String(sharingImageMeta[1]))!)!
@@ -65,12 +65,13 @@ class AIFeedbackController {
         }
     }
     
-    func generateStructuredResponse(sharingImageName: String, sharingImageType: SharingImage.sharingImageType) -> (returnCorrectInput: Bool, returnDialogue: String) {
+    func generateStructuredResponse(sharingImageName: String, sharingImageType: SharingImage.sharingImageType) -> (returnCorrectInput: Bool, returnDialogue: String, returnActionURL: URL?) {
         self.sessionImageHistory.append((sharingImageName: sharingImageName, sharingImageType: sharingImageType))
         let currentInputCount = sessionImageHistory.count
         
         var returnDialogue: String = "Detected image “\(sharingImageName)”. "
         var returnCorrectInput: Bool = true
+        var returnActionURL: URL? = nil
         
         if(sharingImageType == self.interactionStructure![currentInputCount-1]){
             // Check if the sequence of inputs so far are compatible
@@ -82,9 +83,7 @@ class AIFeedbackController {
                 returnDialogue += "Great! I will do this action and involve this person"
                 self.sessionImageHistory.removeAll()
                 let email = SharingImage.sharingEmail // This email can be a property of the sharingimage objects instead of a class property as in this example
-                if let url = URL(string: "mailto:\(email)") {
-                    UIApplication.shared.open(url)
-                }
+                returnActionURL = URL(string: "mailto:\(email)")
             }
             else{
                 returnDialogue += "Ok! Could you tell me the " + self.interactionStructure![currentInputCount].stringify() + " for this (if any)"
@@ -98,10 +97,10 @@ class AIFeedbackController {
             print(self.sessionImageHistory.popLast() ?? "")
             returnCorrectInput = false
         }
-        return (returnCorrectInput, returnDialogue)
+        return (returnCorrectInput, returnDialogue, returnActionURL)
     }
     
-    func generateUnstructuredResponse(sharingImageName: String, sharingImageType: SharingImage.sharingImageType) -> (returnCorrectInput: Bool, returnDialogue: String) {
-        return (true," ")
+    func generateUnstructuredResponse(sharingImageName: String, sharingImageType: SharingImage.sharingImageType) -> (returnCorrectInput: Bool, returnDialogue: String, returnActionURL: URL?) {
+        return (true, " ", nil)
     }
 }
