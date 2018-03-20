@@ -19,6 +19,7 @@
 		4268B4A5205619D900159DFA /* SharingImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4268B4A4205619D900159DFA /* SharingImageTableViewCell.swift */; };
 		4268B4A72056438500159DFA /* SharingImageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4268B4A62056438500159DFA /* SharingImageTableViewController.swift */; };
 		42F4A198205CDFFC00C50F96 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F4A197205CDFFC00C50F96 /* StatusViewController.swift */; };
+		42F4A19A20601AA700C50F96 /* AIFeedbackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F4A19920601AA700C50F96 /* AIFeedbackController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,11 +44,12 @@
 		4268B48D20545D5100159DFA /* Share With ImagesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Share With ImagesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4268B49120545D5100159DFA /* Share_With_ImagesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Share_With_ImagesTests.swift; sourceTree = "<group>"; };
 		4268B49320545D5100159DFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4268B4A02055E81000159DFA /* SharingImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingImageViewController.swift; sourceTree = "<group>"; };
+		4268B4A02055E81000159DFA /* SharingImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SharingImageViewController.swift; path = ../SharingImageViewController.swift; sourceTree = "<group>"; };
 		4268B4A22055F9E500159DFA /* SharingImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingImage.swift; sourceTree = "<group>"; };
 		4268B4A4205619D900159DFA /* SharingImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingImageTableViewCell.swift; sourceTree = "<group>"; };
 		4268B4A62056438500159DFA /* SharingImageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharingImageTableViewController.swift; sourceTree = "<group>"; };
 		42F4A197205CDFFC00C50F96 /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
+		42F4A19920601AA700C50F96 /* AIFeedbackController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIFeedbackController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +73,6 @@
 		4268B46E20545D4F00159DFA = {
 			isa = PBXGroup;
 			children = (
-				4268B4A02055E81000159DFA /* SharingImageViewController.swift */,
 				4268B47920545D4F00159DFA /* Share With Images */,
 				4268B49020545D5100159DFA /* Share With ImagesTests */,
 				4268B47820545D4F00159DFA /* Products */,
@@ -90,6 +91,8 @@
 		4268B47920545D4F00159DFA /* Share With Images */ = {
 			isa = PBXGroup;
 			children = (
+				42F4A19920601AA700C50F96 /* AIFeedbackController.swift */,
+				4268B4A02055E81000159DFA /* SharingImageViewController.swift */,
 				4268B47A20545D4F00159DFA /* AppDelegate.swift */,
 				4268B47C20545D4F00159DFA /* art.scnassets */,
 				4268B47E20545D4F00159DFA /* ViewController.swift */,
@@ -216,6 +219,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42F4A19A20601AA700C50F96 /* AIFeedbackController.swift in Sources */,
 				42F4A198205CDFFC00C50F96 /* StatusViewController.swift in Sources */,
 				4268B4A32055F9E500159DFA /* SharingImage.swift in Sources */,
 				4268B4A5205619D900159DFA /* SharingImageTableViewCell.swift in Sources */,

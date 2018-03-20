@@ -21,6 +21,17 @@ class SharingImage: NSObject, NSCoding {
         // The SharingImage object represents a certain type of input
         // For example a photo, text, or audio .. that can be attached to an email
         case FreeformInput
+        
+        func stringify() -> String {
+            switch self {
+            case .Person:
+                return "Person"
+            case .Action:
+                return "Action"
+            case .FreeformInput:
+                return "Freeform Input"
+            }
+        }
     }
     
     var name: String

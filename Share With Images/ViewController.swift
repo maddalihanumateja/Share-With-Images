@@ -24,15 +24,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         return true
     }
     
-    // A data structure to keep track of the images that have already been  detected
-    // Its helps to have an ordered class for this.
-    // We may need to present different messages for different types of SharingImages
+    // A controller that keeps track of the images that have already been  detected
+    // and decides on how to respond to the user (both through dialogue and executing the required actions associated with the inputs)
     
-    var sharingImageStack: [String] = Array<String>()
+    var aiResponder: AIFeedbackController = AIFeedbackController(structuredInteraction: true, interactionStructure: [SharingImage.sharingImageType.Person, SharingImage.sharingImageType.Action])
 
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var blurView: UIVisualEffectView!
     
+    // A variable that keeps track of the previous detected SharingImage ARAnchor and if it was presented in the correct sequence
     
     /// A serial queue for thread safety when modifying the SceneKit node graph.
     let updateQueue = DispatchQueue(label: Bundle.main.bundleIdentifier! +
@@ -79,10 +79,25 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     // Override to create and configure nodes for anchors added to the view's session.
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
+        
         let node = SCNNode()
+        
+        struct previousNode {
+            static var previousARAnchor: ARAnchor = ARAnchor(transform: matrix_float4x4())
+            static var previousReturnCorrectInput: Bool = true
+        }
         
         guard let imageAnchor = anchor as? ARImageAnchor else { return node }
         let referenceImage = imageAnchor.referenceImage
+        
+        let imageName: String = referenceImage.name ?? ""
+        node.name = "parent;" + (imageName)
+        
+        // An example implementation where a gmail photo triggers opening the email app
+        // when the obama picture has been shown previously (and is stored in the stack)
+        
+        // Generate a response to be shown in the status container for the input image
+        let aiResponse = self.aiResponder.generateResponse(inputSharingImage: imageName)
         
         updateQueue.async {
             
@@ -90,6 +105,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             let plane = SCNPlane(width: referenceImage.physicalSize.width,
                                  height: referenceImage.physicalSize.height)
             let planeNode = SCNNode(geometry: plane)
+            planeNode.name = referenceImage.name ?? ""
             planeNode.opacity = 0.25
             
             /*
@@ -110,32 +126,38 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
         
         DispatchQueue.main.async {
-            let imageName = referenceImage.name ?? ""
-            self.sharingImageStack.append(imageName)
+            //Display the status message
             self.statusViewController.cancelAllScheduledMessages()
-            self.statusViewController.showMessage("Detected image “\(imageName.split(separator:";")[0])”")
-            // An example implementation where a gmail photo triggers opening the email app
-            // when the obama picture has been shown previously (and is stored in the stack)
-            if imageName == "gmail;1"{
-                if(self.sharingImageStack.contains("obama;0")){
-                    self.statusViewController.cancelAllScheduledMessages()
-                    self.statusViewController.showMessage("Send an email to obama")
-                    let email = SharingImage.sharingEmail // This email can be a property of the sharingimage objects instead of a class property as in this example
-                    if let url = URL(string: "mailto:\(email)") {
-                        UIApplication.shared.open(url)
+            self.statusViewController.showMessage(aiResponse.returnDialogue)
+            
+            print("previousReturnCorrectInput = \(previousNode.previousReturnCorrectInput)")
+        }
+        
+        // We want the ARAnchor for the incorrect input image to be removed ideally after the next image is detected (using something like removal after a delay just complicates things if the object stays in view). Else the image will just continue to be tracked invisibly till the ARSession is reset
+        // Referred to this post https://stackoverflow.com/questions/27517632/how-to-create-a-delay-in-swift
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+            if(!previousNode.previousReturnCorrectInput){
+                
+                print("Removing the previous ARAnchor")
+                
+                let tempAnchor: ARAnchor? = previousNode.previousARAnchor
+                previousNode.previousARAnchor = ARAnchor(transform: matrix_float4x4())
+                
+                self.sceneView.session.remove(anchor: tempAnchor!)
+                // Got the following line from https://stackoverflow.com/questions/45803884/arkit-how-to-reset-world-orientation-after-interruption
+                self.sceneView.scene.rootNode.enumerateChildNodes { (node, stop) in
+                    if(node.name == "parent;"+imageName){
+                        node.removeFromParentNode()
                     }
                 }
-                else{
-                    self.statusViewController.cancelAllScheduledMessages()
-                    self.statusViewController.showMessage("Show obama picture first")
-                    // Reset tracking here.
-                    // Better solutions would be to allow unstructured input
-                    // Or maybe check whether the previously detected mail image is still in the camera view assuming the camera isn't moving and its objects that go in and out of the view. Objects outside the view could be dropped and re-detected when they enter the scene.
-                }
-                self.sharingImageStack.removeAll()
             }
-        }
-    
+            
+            // Update previousReturnCorrectInput and previousARAnchor to the current values
+            previousNode.previousARAnchor = anchor
+            previousNode.previousReturnCorrectInput = aiResponse.returnCorrectInput
+        })
+        
         return node
     }
      
@@ -162,8 +184,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
         
-        // Clear the sharingImageStack to delete records of previously detected images
-        self.sharingImageStack.removeAll()
+        // Clear the sharingImage input history to delete records of previously detected images
+        self.aiResponder.clearHistory()
         
         // Load the images to be tracked and cast them as ARReferenceImage
         guard let sharingImages =  NSKeyedUnarchiver.unarchiveObject(withFile: SharingImage.ArchiveURL.path) as? [SharingImage] else {
