@@ -291,7 +291,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="125" height="32"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DHx-mM-bN9">
+                                        <visualEffectView opaque="NO" alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DHx-mM-bN9">
                                             <rect key="frame" x="0.0" y="0.0" width="125" height="33"/>
                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="SPk-LO-qiw">
                                                 <rect key="frame" x="0.0" y="0.0" width="125" height="33"/>
@@ -312,9 +312,8 @@
                                                     <constraint firstItem="wjQ-Xk-GF7" firstAttribute="top" secondItem="SPk-LO-qiw" secondAttribute="top" constant="8" id="fgA-ih-jmU"/>
                                                 </constraints>
                                             </view>
-                                            <vibrancyEffect>
-                                                <blurEffect style="extraLight"/>
-                                            </vibrancyEffect>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <blurEffect style="extraLight"/>
                                         </visualEffectView>
                                     </subviews>
                                     <constraints>

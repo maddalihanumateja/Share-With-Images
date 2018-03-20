@@ -80,20 +80,20 @@ class AIFeedbackController {
             //Check if a "complete" interaction has occurred i.e. the user has given all the required inputs and in the correct sequence
             if(currentInputCount == self.interactionStructure?.count){
                 // Do something based on the action, persons, and freeform-input (and possibly condition)
-                returnDialogue += "Great! I will do this action and involve this person"
+                returnDialogue += "Great 😃! I will do this action and involve this person."
                 self.sessionImageHistory.removeAll()
                 let email = SharingImage.sharingEmail // This email can be a property of the sharingimage objects instead of a class property as in this example
                 returnActionURL = URL(string: "mailto:\(email)")
             }
             else{
-                returnDialogue += "Ok! Could you tell me the " + self.interactionStructure![currentInputCount].stringify() + " for this (if any)"
+                returnDialogue += "Ok 🙂! Could you tell me the " + self.interactionStructure![currentInputCount].stringify() + " for this (if any)"
             }
         }
         else{
             // Input presented in the wrong sequence. What is the type of input expected?
             // That input may have a different name that you want to display depending on the context
             // example: A person in the context of an email could be a recipient
-            returnDialogue += "I was expecting a " + self.interactionStructure![currentInputCount].stringify() + " instead of a " + sharingImageType.stringify() + "?"
+            returnDialogue += "I was expecting a " + self.interactionStructure![currentInputCount-1].stringify() + " instead of a " + sharingImageType.stringify() + " 😕."
             print(self.sessionImageHistory.popLast() ?? "")
             returnCorrectInput = false
         }

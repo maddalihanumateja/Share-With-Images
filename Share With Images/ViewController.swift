@@ -27,7 +27,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     // A controller that keeps track of the images that have already been  detected
     // and decides on how to respond to the user (both through dialogue and executing the required actions associated with the inputs)
     
-    var aiResponder: AIFeedbackController = AIFeedbackController(structuredInteraction: true, interactionStructure: [SharingImage.sharingImageType.Person, SharingImage.sharingImageType.Action])
+    var aiResponder: AIFeedbackController = AIFeedbackController(structuredInteraction: true, interactionStructure: [SharingImage.sharingImageType.Action, SharingImage.sharingImageType.Person])
 
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var blurView: UIVisualEffectView!
