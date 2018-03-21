@@ -51,7 +51,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </arscnView>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ylP-Ac-pQO">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="153"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="e7C-Ju-Xbe" kind="embed" id="LGq-OC-S3I"/>
@@ -282,7 +282,7 @@
             <objects>
                 <viewController title="Status View Controller" id="e7C-Ju-Xbe" customClass="StatusViewController" customModule="Share_With_Images" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Cp-70-fHd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="153"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <visualEffectView hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="CmX-3P-gpe" userLabel="Message Panel">
@@ -346,6 +346,76 @@
                                     <action selector="restartExperience:" destination="e7C-Ju-Xbe" eventType="touchUpInside" id="Paf-34-cZh"/>
                                 </connections>
                             </button>
+                            <visualEffectView hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="100" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MyI-v5-13P" userLabel="User Input Panel">
+                                <rect key="frame" x="16" y="60" width="125" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="juA-pS-N5I">
+                                    <rect key="frame" x="0.0" y="0.0" width="125" height="43"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <visualEffectView opaque="NO" alpha="0.75" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fjr-CA-iNs">
+                                            <rect key="frame" x="5" y="5" width="33" height="33"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="bSD-mU-jrU">
+                                                <rect key="frame" x="0.0" y="0.0" width="33" height="33"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JwT-Fa-k5x">
+                                                        <rect key="frame" x="4" y="4" width="24" height="24"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <state key="normal" title="Yes" image="okButton"/>
+                                                    </button>
+                                                </subviews>
+                                            </view>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <blurEffect style="extraLight"/>
+                                        </visualEffectView>
+                                        <visualEffectView opaque="NO" alpha="0.75" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K5e-nM-ClR">
+                                            <rect key="frame" x="44" y="5" width="33" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="nGu-HJ-RL1">
+                                                <rect key="frame" x="0.0" y="0.0" width="33" height="33"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V4b-O6-w2Y">
+                                                        <rect key="frame" x="4" y="4" width="25" height="25"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <state key="normal" title="Record" image="recordButton"/>
+                                                    </button>
+                                                </subviews>
+                                            </view>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <blurEffect style="extraLight"/>
+                                        </visualEffectView>
+                                        <visualEffectView opaque="NO" alpha="0.75" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RQM-NW-NOb">
+                                            <rect key="frame" x="87" y="5" width="33" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" id="H16-sv-cwc">
+                                                <rect key="frame" x="0.0" y="0.0" width="33" height="33"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z73-aE-0r5" userLabel="No">
+                                                        <rect key="frame" x="4" y="4" width="25" height="25"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <state key="normal" title="No" image="cancelButton"/>
+                                                    </button>
+                                                </subviews>
+                                            </view>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <blurEffect style="extraLight"/>
+                                        </visualEffectView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="fjr-CA-iNs" secondAttribute="bottom" constant="5" id="fzu-au-gmN"/>
+                                        <constraint firstItem="fjr-CA-iNs" firstAttribute="top" secondItem="juA-pS-N5I" secondAttribute="top" constant="5" id="zYY-jh-BgV"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="light"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -365,13 +435,16 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iPB-bX-SV5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1004" y="254"/>
+            <point key="canvasLocation" x="-1004" y="253.2233883058471"/>
         </scene>
     </scenes>
     <resources>
         <image name="camera" width="25" height="25"/>
+        <image name="cancelButton" width="25" height="25"/>
         <image name="defaultSharingImage" width="540" height="540"/>
         <image name="gallery" width="25" height="25"/>
+        <image name="okButton" width="24" height="24"/>
+        <image name="recordButton" width="25" height="25"/>
         <image name="restart" width="20" height="23"/>
         <image name="restartPressed" width="20" height="23"/>
     </resources>
