@@ -250,9 +250,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Ki-vY-Mzf" userLabel="Camera View">
-                                <rect key="frame" x="-90" y="-99" width="556" height="864"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VoR-2v-utQ" userLabel="Highlight View">
+                                <rect key="frame" x="146" y="292" width="83" height="83"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.1450980392" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -262,6 +267,7 @@
                     <tabBarItem key="tabBarItem" title="FrontCamera" id="9DD-qI-liR"/>
                     <connections>
                         <outlet property="cameraView" destination="2Ki-vY-Mzf" id="a7P-oL-WMm"/>
+                        <outlet property="highlightView" destination="VoR-2v-utQ" id="YzE-8I-Qk0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e1d-bS-ayc" userLabel="First Responder" sceneMemberID="firstResponder"/>
