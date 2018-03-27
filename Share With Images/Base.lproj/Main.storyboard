@@ -23,13 +23,14 @@
                     <connections>
                         <segue destination="BV1-FR-VrT" kind="relationship" relationship="viewControllers" id="B1L-EK-uRb"/>
                         <segue destination="PPi-p9-KxB" kind="relationship" relationship="viewControllers" id="sHe-mc-LYS"/>
+                        <segue destination="lyT-of-vmD" kind="relationship" relationship="viewControllers" id="jSC-nO-Spt"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S77-xc-8BV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1783" y="-412"/>
         </scene>
-        <!--Camera-->
+        <!--BackCamera-->
         <scene sceneID="tXr-a1-R10">
             <objects>
                 <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="Share_With_Images" customModuleProvider="target" sceneMemberID="viewController">
@@ -61,7 +62,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="2jP-ju-u44"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Camera" image="camera" id="Y47-xB-3hy"/>
+                    <tabBarItem key="tabBarItem" title="BackCamera" image="camera" id="Y47-xB-3hy"/>
                     <connections>
                         <outlet property="blurView" destination="8WX-73-2ai" id="eqO-9g-NpM"/>
                         <outlet property="sceneView" destination="IyO-SQ-C3I" id="lgb-JL-Ecc"/>
@@ -239,6 +240,33 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1652" y="-392"/>
+        </scene>
+        <!--FrontCamera-->
+        <scene sceneID="Ktr-aP-Yc8">
+            <objects>
+                <viewController id="lyT-of-vmD" customClass="FrontCameraViewController" customModule="Share_With_Images" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QKL-uJ-rdh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Ki-vY-Mzf" userLabel="Camera View">
+                                <rect key="frame" x="-90" y="-99" width="556" height="864"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
+                        <viewLayoutGuide key="safeArea" id="PRH-UZ-bHC"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="FrontCamera" id="9DD-qI-liR"/>
+                    <connections>
+                        <outlet property="cameraView" destination="2Ki-vY-Mzf" id="a7P-oL-WMm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e1d-bS-ayc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-788" y="-1097.001499250375"/>
         </scene>
         <!--ManageSharingImageController-->
         <scene sceneID="nl9-Nj-t2n">

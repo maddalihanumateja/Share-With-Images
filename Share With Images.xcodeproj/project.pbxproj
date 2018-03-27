@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		424CC74F2069A4B400EE6B2C /* FrontCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424CC74E2069A4B400EE6B2C /* FrontCameraViewController.swift */; };
 		4268B47B20545D4F00159DFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4268B47A20545D4F00159DFA /* AppDelegate.swift */; };
 		4268B47D20545D4F00159DFA /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 4268B47C20545D4F00159DFA /* art.scnassets */; };
 		4268B47F20545D4F00159DFA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4268B47E20545D4F00159DFA /* ViewController.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		424CC74E2069A4B400EE6B2C /* FrontCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontCameraViewController.swift; sourceTree = "<group>"; };
 		4268B47720545D4F00159DFA /* Share With Images.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Share With Images.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4268B47A20545D4F00159DFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4268B47C20545D4F00159DFA /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				4268B48520545D5100159DFA /* LaunchScreen.storyboard */,
 				4268B48820545D5100159DFA /* Info.plist */,
 				4268B4A22055F9E500159DFA /* SharingImage.swift */,
+				424CC74E2069A4B400EE6B2C /* FrontCameraViewController.swift */,
 			);
 			path = "Share With Images";
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42F4A19A20601AA700C50F96 /* AIFeedbackController.swift in Sources */,
+				424CC74F2069A4B400EE6B2C /* FrontCameraViewController.swift in Sources */,
 				42F4A198205CDFFC00C50F96 /* StatusViewController.swift in Sources */,
 				4268B4A32055F9E500159DFA /* SharingImage.swift in Sources */,
 				4268B4A5205619D900159DFA /* SharingImageTableViewCell.swift in Sources */,
