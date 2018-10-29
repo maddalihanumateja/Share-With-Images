@@ -3,6 +3,8 @@ AR iOS app for a vision-based tangible interface. This extends work by my adviso
 
 This [issue](https://github.com/maddalihanumateja/Share-With-Images/issues/6) and its related pull-requests talk about the currently working functionality: Saying you want to send an email (desired action as input) and to whom (person as input). Its hardcoded for a [Gmail image](https://raw.githubusercontent.com/maddalihanumateja/Share-With-Images/master/Share%20With%20Images/Assets.xcassets/Sample%20Images/gmail.imageset/gmail.png), and [Obama image](https://raw.githubusercontent.com/maddalihanumateja/Share-With-Images/master/Share%20With%20Images/Assets.xcassets/Sample%20Images/obama.imageset/obama.jpeg). As an example of sequential presentation of inputs, showing the image of the gamil app first followed by obama gives a different response to the reverse case. Try it out. This can also be changed to a non-sequential presentation of inputs as well.
 
+A question you might have is why I'm even using AR specific libraries at all, why not just OpenCV? Well, they seemed to have good set of marker tracking libraries which I could easy use when developing for mobile. This is why I was initially interested in ARKit. I also had this idea of being able to create personalized AR spaces for memory-related activites (Display old photographs on the wall, preserve models of objects that hold meaning ...). These could, once again, use a lot of feedback from the community of older adults I planned to design this app for. But I definitely see potential for AR/VR in enabling shared experiences for a multigenerational userbase that includes older adults and this app is a practise exercise.
+
 Requirements
 
  - Tech:
